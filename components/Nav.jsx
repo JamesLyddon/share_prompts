@@ -6,21 +6,20 @@ import { useState, useEffect } from "react"
 import { signIn, signOut, useSession, getProviders} from 'next-auth/react'
 
 const Nav = () => {
-  const isUserLoggedIn = true
+  const { data: session } = useSession()
   
   const [providers, setProviders] = useState(null)
   const [toggleDropdown, setToggleDropdown] = useState(false)
 
   // set up next auth providers
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders()
       setProviders(response)
     }
 
-    setProviders()
+    setUpProviders()
   }, [])
-
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -31,7 +30,7 @@ const Nav = () => {
 
       {/* Desktop(larger than x-small) Navigation */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ?
+        {session?.user ?
         (
           <div className="flex gap-3 md:gap-5">
             <Link className="black_btn" href="/create-prompt">
@@ -73,7 +72,7 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
               <Image 
                 className="rounded-full"
