@@ -34,7 +34,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             <h3 className="font-satoshi font-semibold text-gray-900">
               {post.creator.username}
             </h3>
-            <p classname="font-inter text-sm text-gray-500">
+            <p className="font-inter text-sm text-gray-500">
               {post.creator.email}
             </p>
           </div>
@@ -47,6 +47,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             }
             width={12}
             height={12}
+            alt="copy_btn"
           />
         </div>
       </div>
